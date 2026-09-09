@@ -68,7 +68,7 @@ func QRDecompose(a Matrix) (q Matrix, r Matrix, err error) {
 		}
 
 		for k := j + 1; k < cols; k++ {
-			dot := dotProductColum(q, j, v[k])
+			dot := dotProductColumn(q, j, v[k])
 
 			r[j][k] = dot
 
@@ -99,4 +99,14 @@ func euclideanNorm(vec []float64) float64 {
 	}
 
 	return math.Sqrt(sum)
+}
+
+func dotProductColumn(q Matrix, col int, vec []float64) float64 {
+	sum := 0.0
+
+	for i := range vec {
+		sum += q[i][col] * vec[i]
+	}
+
+	return sum
 }
