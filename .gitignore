@@ -10,5 +10,8 @@
 *.out
 vendor/
 
+# envs
+*.env
+
 # files
 *.pdf
