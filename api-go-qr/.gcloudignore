@@ -1,0 +1,13 @@
+cd ../api-go-qr
+cat > .gcloudignore << 'EOF'
+.git
+.gitignore
+*.md
+.env
+.vscode
+.idea
+.dockerignore
+docker-compose.yml
+api-go-qr
+*.exe
+EOF

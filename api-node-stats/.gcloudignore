@@ -1,0 +1,14 @@
+cd api-node-stats
+cat > .gcloudignore << 'EOF'
+node_modules
+dist
+npm-debug.log*
+.git
+.gitignore
+*.md
+.env
+.vscode
+.idea
+.dockerignore
+docker-compose.yml
+EOF
