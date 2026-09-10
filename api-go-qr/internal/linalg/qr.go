@@ -7,6 +7,8 @@ import (
 
 type Matrix [][]float64
 
+const epsilon = 1e-10
+
 var ErrEmptyMatrix = errors.New("la martiz no puede estar vacía")
 var ErrNotRectangular = errors.New("todas las filas de la matriz deben tener la misma cantidad de columnas")
 
@@ -73,7 +75,7 @@ func QRDecompose(a Matrix) (q Matrix, r Matrix, err error) {
 			r[j][k] = dot
 
 			for i := 0; i < rows; i++ {
-				v[k][j] -= dot * q[i][j]
+				v[k][i] -= dot * q[i][j]
 			}
 		}
 	}

@@ -1,0 +1,14 @@
+# Tests
+*_test.go
+
+# Binarios y build
+/bin/
+*.exe
+*.test
+
+# Go
+*.out
+vendor/
+
+# files
+*.pdf
