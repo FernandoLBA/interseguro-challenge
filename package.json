@@ -1,0 +1,17 @@
+{
+  "name": "interseguro-challenge",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n go,node -c blue,green \"npm:dev:go\" \"npm:dev:node\"",
+    "dev:go": "cd api-go-qr && go run .",
+    "dev:node": "npm run dev --prefix api-node-stats",
+    "install:node": "npm install --prefix api-node-stats",
+    "build:go": "cd api-go-qr && go build ./...",
+    "test": "npm run test:go && npm run test:node",
+    "test:go": "cd api-go-qr && go test ./...",
+    "test:node": "npm run test --prefix api-node-stats"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

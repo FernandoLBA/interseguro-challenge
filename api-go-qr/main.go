@@ -7,6 +7,7 @@ import (
 	"github.com/fernandolba/interseguro-challenge/api-go-qr/internal/client"
 	"github.com/fernandolba/interseguro-challenge/api-go-qr/internal/handlers"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joho/godotenv"
 )
@@ -18,11 +19,17 @@ func main() {
 
 	nodeStatsAPIURL := getEnv("NODE_STATS_API_URL", "http://localhost:3000")
 	port := getEnv("PORT", "3000")
+	allowedOrigins := getEnv("ALLOWED_ORIGINS", "*")
 
 	statsClient := client.NewStatsClient(nodeStatsAPIURL)
 
 	app := fiber.New(fiber.Config{AppName: "api-go-qr"})
 	app.Use(logger.New())
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: allowedOrigins,
+		AllowMethods: "GET,POST,OPTIONS",
+		AllowHeaders: "Content-Type",
+	}))
 
 	app.Get("/health", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"status": "ok"})

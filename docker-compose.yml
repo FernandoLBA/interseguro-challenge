@@ -1,0 +1,36 @@
+services:
+  api-node-stats:
+    build:
+      context: ./api-node-stats
+    container_name: api-node-stats
+    environment:
+      PORT: "3000"
+    networks:
+      - challenge-net
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  api-go-qr:
+    build:
+      context: ./api-go-qr
+    container_name: api-go-qr
+    environment:
+      PORT: "8080"
+      NODE_STATS_API_URL: "http://api-node-stats:3000"
+    ports:
+      - "8080:8080"
+    depends_on:
+      api-node-stats:
+        condition: service_healthy
+    networks:
+      - challenge-net
+    restart: unless-stopped
+
+networks:
+  challenge-net:
+    driver: bridge

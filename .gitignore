@@ -14,5 +14,20 @@ dist/
 # envs
 *.env
 
+# GCP / credenciales
+*-key.json
+*-sa-key.json
+service-account*.json
+gcp-credentials.json
+credentials.json
+
+# logs
+*.log
+
+# SO / editor
+.DS_Store
+.vscode/
+.idea/
+
 # files
 *.pdf

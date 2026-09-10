@@ -45,7 +45,7 @@ func (c *StatsClient) GetStats(q, r [][]float64) (map[string]interface{}, error)
 
 	defer resp.Body.Close()
 
-	body, _ := io.ReadAll(req.Body)
+	body, _ := io.ReadAll(resp.Body)
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("La API de estadísticas respondió %d: %s", resp.StatusCode, string(body))
